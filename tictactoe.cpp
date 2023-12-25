@@ -136,3 +136,37 @@ void ticTacToe::newGame()
     prevPlayed = 0;
 }
 
+template <typename onlyInt>
+int ticTacToe::Move(onlyInt col, onlyInt row, onlyInt player) {
+    try {
+        if ((*grid).at(row).at(col) != 0) {
+            std::cout << "This square is already occupied\n";
+            return -1;
+        }
+
+        if (player == 1)
+            (*grid)[row][col] = player;
+        else if (player == 2)
+            (*grid)[row][col] = player;
+    }
+    catch (const std::out_of_range& exc) {
+        std::cout << "Error: " << exc.what() << "\n";
+        return -1;
+    }
+
+    turn++;
+    int win = checkForWinner();
+    if (win == 0)
+        return 0;
+    if (win == 1) {
+        gameEnded = true;
+        return 1;
+    }
+
+    if (win == 2) {
+        gameEnded = true;
+        return 2;
+    }
+
+    return 0;
+}
