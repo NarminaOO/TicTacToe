@@ -138,6 +138,38 @@ void ticTacToe::newGame()
 
 template <typename onlyInt>
 int ticTacToe::Move(onlyInt col, onlyInt row, onlyInt player) {
+    static_assert(std::is_same<onlyInt, int>::value, "input must be integer");
+
+    if (gameEnded) {
+        std::cout << "Game is over\n"
+            << "Start a new game?\ny/n?\n";
+
+        char choice{};
+        std::cin >> choice;
+
+        switch (choice) {
+        case 'y': {
+            newGame();
+            return -1;
+        }
+        case 'n': {
+            return -1;
+        }
+        default:
+            return -1;
+        }
+    }
+
+    if (player != 1 && player != 2) {
+        std::cout << "Only 2 players are allowed\n";
+        return -1;
+    }
+
+    if (prevPlayed == player) {
+        std::cout << "Player " << player << " made their turn twice in a row\n";
+        return -1;
+    }
+    
     try {
         if ((*grid).at(row).at(col) != 0) {
             std::cout << "This square is already occupied\n";
