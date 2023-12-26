@@ -2,7 +2,7 @@
 #include <memory>
 #include <vector>
 #include <type_traits>
-#include "tictactoe.h"
+#include "ticTacToeClass.h"
 
 template <typename onlyInt>
 ticTacToe::ticTacToe(onlyInt n) : n(n), turn(0), gameEnded(false), prevPlayed(0) 
