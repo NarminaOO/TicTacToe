@@ -38,3 +38,7 @@ main.cpp:
 2)Player 2 wins
 3)It's draw and all squares are filled.
 4)Out of range conditions described in Move function description.
+
+
+Time complexity-O(n^2) because Move function is constant(since accessing element in vector requires constant time) and in Move function we invoke checkForWinner() function in which we iterate over vector of vectors 4 times,which gives time complexity O(4n^2)=O(n^2).
+Memory requirment is also O(n^2) since we allocate vector of n vectors with size n.Other types take constant space.
